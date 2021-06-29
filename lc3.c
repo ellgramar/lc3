@@ -55,13 +55,19 @@ enum
     FL_ZRO = 1 << 1, /* Z */
     FL_NEG = 1 << 2, /* N */
 };
-/* Memory Mapped Registers */
+// Memory Mapped Registers
 enum
 {
-    MR_KBSR = 0xFE00, /* keyboard status */
-    MR_KBDR = 0xFE02,  /* keyboard data */
+    MR_KBSR = 0xFE00,   // keyboard status reg
+    MR_KBDR = 0xFE02,   // keyboard data reg
+    MR_DSR  = 0xFE04,   // display status reg
+    MR_DDR  = 0xFE06,   // display data reg
+    MR_TR   = 0xFE08,   // timer reg
+    MR_TMI  = 0xFE0A,   // timer interval reg
+    MR_MPR  = 0xFE12,   // memory protection reg
+    MR_MCR  = 0xFEFE    // machine control reg
 };
-/* TRAP Codes */
+// TRAP Codes
 enum
 {
     TRAP_GETC = 0x20,  /* get character from keyboard, not echoed onto the terminal */
@@ -71,10 +77,10 @@ enum
     TRAP_PUTSP = 0x24, /* output a byte string */
     TRAP_HALT = 0x25   /* halt the program */
 };
-/* Memory Storage */
-/* 65536 locations */
+// Memory Storage 
+// 65536 locations 
 uint16_t memory[UINT16_MAX];
-/* Register Storage */
+// Register Storage 
 uint16_t reg[R_COUNT];
 //sign extender
 uint16_t sign_extend(uint16_t x, int bit_count){
